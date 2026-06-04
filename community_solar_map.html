@@ -144,7 +144,7 @@ label { font-weight: 600; color: var(--slate-600); font-size: 0.9em; }
   padding: 24px;
   border: 1px solid var(--slate-200);
   max-height: 620px;
-  overflow-y: hidden;
+  overflow: hidden;
   box-shadow: var(--shadow);
   margin-left: 12px;
   display: flex;
@@ -176,11 +176,11 @@ label { font-weight: 600; color: var(--slate-600); font-size: 0.9em; }
   line-height: 1;
 }
 .panel-toggle-btn:hover { background: var(--slate-200); color: var(--primary); }
-.main-content.panel-collapsed { grid-template-columns: 1fr 0 44px !important; }
+.main-content.panel-collapsed { grid-template-columns: 1fr 0 52px !important; }
 .main-content.panel-collapsed .resize-handle { display: none; }
 .main-content.panel-collapsed .info-panel {
-  padding: 10px 8px;
-  margin-left: 4px;
+  padding: 8px;
+  margin-left: 2px;
   border-radius: 8px;
   align-items: center;
 }

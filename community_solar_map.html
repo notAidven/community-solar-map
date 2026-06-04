@@ -144,14 +144,48 @@ label { font-weight: 600; color: var(--slate-600); font-size: 0.9em; }
   padding: 24px;
   border: 1px solid var(--slate-200);
   max-height: 620px;
-  overflow-y: auto;
+  overflow-y: hidden;
   box-shadow: var(--shadow);
   margin-left: 12px;
+  display: flex;
+  flex-direction: column;
 }
-.info-panel::-webkit-scrollbar { width: 6px; }
-.info-panel::-webkit-scrollbar-track { background: var(--slate-100); border-radius: 3px; }
-.info-panel::-webkit-scrollbar-thumb { background: var(--slate-300); border-radius: 3px; }
-.info-panel::-webkit-scrollbar-thumb:hover { background: var(--slate-400); }
+#panel-content { overflow-y: auto; flex: 1; }
+#panel-content::-webkit-scrollbar { width: 6px; }
+#panel-content::-webkit-scrollbar-track { background: var(--slate-100); border-radius: 3px; }
+#panel-content::-webkit-scrollbar-thumb { background: var(--slate-300); border-radius: 3px; }
+#panel-content::-webkit-scrollbar-thumb:hover { background: var(--slate-400); }
+.panel-toggle-btn {
+  align-self: flex-start;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  background: var(--slate-100);
+  border: 1px solid var(--slate-200);
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--slate-500);
+  margin-bottom: 10px;
+  transition: background 0.15s;
+  flex-shrink: 0;
+  font-family: inherit;
+  line-height: 1;
+}
+.panel-toggle-btn:hover { background: var(--slate-200); color: var(--primary); }
+.main-content.panel-collapsed { grid-template-columns: 1fr 0 44px !important; }
+.main-content.panel-collapsed .resize-handle { display: none; }
+.main-content.panel-collapsed .info-panel {
+  padding: 10px 8px;
+  margin-left: 4px;
+  border-radius: 8px;
+  align-items: center;
+}
+.main-content.panel-collapsed #panel-content { display: none; }
+.main-content.panel-collapsed .panel-toggle-btn { margin-bottom: 0; }
 .info-placeholder h3 { color: var(--slate-800); margin-bottom: 12px; font-size: 1.1em; font-weight: 700; }
 .info-placeholder > p { margin-bottom: 20px; color: var(--slate-500); font-size: 0.9em; }
 .policy-highlight {
@@ -374,6 +408,8 @@ footer {
     <div id="map"></div>
     <div class="resize-handle" id="resize-handle"></div>
     <div id="info-panel" class="info-panel">
+      <button id="panel-toggle" class="panel-toggle-btn" title="Collapse panel">&#8250;</button>
+      <div id="panel-content">
       <div class="info-placeholder">
         <h3>Welcome to the Community-Owned Solar Map!</h3>
         <p>Click on any project marker to view its details.</p>
@@ -419,6 +455,7 @@ footer {
           </dl>
         </div>
       </div>
+      </div>
     </div>
   </div>
 
@@ -432,16 +469,16 @@ footer {
 window.addEventListener("load", function() {
 if (typeof L === "undefined") { document.getElementById("map").innerHTML = "<div style=padding:20px>Map library failed to load.</div>"; return; }
 
-var welcomeContent = document.getElementById('info-panel').innerHTML;
+var welcomeContent = document.getElementById('panel-content').innerHTML;
 
 function showWelcome() {
-  document.getElementById('info-panel').innerHTML = welcomeContent;
+  document.getElementById('panel-content').innerHTML = welcomeContent;
 }
 window.showWelcome = showWelcome;
 
 function showProjectDetail(p) {
   var fmt = function(v) { return v != null ? v : '--'; };
-  document.getElementById('info-panel').innerHTML =
+  document.getElementById('panel-content').innerHTML =
     '<button class="back-button" onclick="showWelcome()">Back to Overview</button>' +
     '<div class="project-details">' +
     '<h3>' + (p.name || 'Unnamed Project') + '</h3>' +
@@ -730,6 +767,14 @@ document.addEventListener('mousemove', function(e) {
 });
 document.addEventListener('mouseup', function() {
   if (isResizing) { isResizing = false; handle.classList.remove('dragging'); document.body.style.cursor = ''; map.invalidateSize(); }
+});
+
+document.getElementById('panel-toggle').addEventListener('click', function() {
+  var mc = document.getElementById('main-content');
+  var collapsed = mc.classList.toggle('panel-collapsed');
+  this.textContent = collapsed ? '\u203a' : '\u2039';
+  this.title = collapsed ? 'Expand panel' : 'Collapse panel';
+  map.invalidateSize();
 });
 
 document.getElementById('cb-highlevel').checked = true;

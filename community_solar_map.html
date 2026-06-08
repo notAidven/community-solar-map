@@ -196,14 +196,14 @@ label { font-weight: 600; color: var(--slate-600); font-size: 0.9em; }
 }
 .info-placeholder h3 { color: var(--slate-800); margin-bottom: 12px; font-size: 1.1em; font-weight: 700; }
 .info-placeholder > p { margin-bottom: 20px; color: var(--slate-500); font-size: 0.9em; }
-.policy-highlight {
+.layers-guide, .glossary {
   background: linear-gradient(135deg, var(--primary-bg) 0%, #ccfbf1 100%);
   border-radius: 12px;
   padding: 20px;
-  margin-bottom: 24px;
+  margin-top: 24px;
   border: 1px solid #99f6e4;
 }
-.policy-highlight h4 {
+.layers-guide h4, .glossary h4 {
   color: var(--primary-dark);
   margin-bottom: 16px;
   font-size: 0.95em;
@@ -212,7 +212,7 @@ label { font-weight: 600; color: var(--slate-600); font-size: 0.9em; }
   align-items: center;
   gap: 8px;
 }
-.policy-highlight h4::before {
+.layers-guide h4::before, .glossary h4::before {
   content: '';
   width: 4px;
   height: 20px;
@@ -220,8 +220,8 @@ label { font-weight: 600; color: var(--slate-600); font-size: 0.9em; }
   border-radius: 2px;
   flex-shrink: 0;
 }
-.policy-points { display: flex; flex-direction: column; gap: 10px; }
-.policy-point {
+.info-cards { display: flex; flex-direction: column; gap: 10px; }
+.info-card {
   padding: 12px;
   background: white;
   border-radius: 10px;
@@ -229,21 +229,13 @@ label { font-weight: 600; color: var(--slate-600); font-size: 0.9em; }
   border: 1px solid rgba(20,184,166,0.1);
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
-.policy-point:hover { transform: translateY(-1px); box-shadow: var(--shadow); }
-.policy-point strong { color: var(--slate-800); display: block; margin-bottom: 2px; font-size: 0.88em; font-weight: 600; }
-.policy-point p { margin: 0; font-size: 0.82em; color: var(--slate-600); line-height: 1.5; }
-.glossary { margin-top: 24px; padding-top: 20px; border-top: 1px solid var(--slate-200); }
-.glossary h4 { color: var(--slate-700); margin-bottom: 14px; font-size: 0.95em; font-weight: 600; }
-.glossary dl { margin: 0; }
-.glossary dt { font-weight: 600; color: var(--slate-700); margin-top: 12px; font-size: 0.88em; }
-.glossary dt:first-child { margin-top: 0; }
-.glossary dd { margin-left: 0; margin-top: 4px; color: var(--slate-500); font-size: 0.82em; line-height: 1.5; padding-left: 12px; border-left: 2px solid var(--slate-200); }
-.layers-guide { margin-top: 24px; padding-top: 20px; border-top: 1px solid var(--slate-200); margin-bottom: 24px; }
-.layers-guide h4 { color: var(--slate-700); margin-bottom: 14px; font-size: 0.95em; font-weight: 600; }
-.layers-guide dl { margin: 0; }
-.layers-guide dt { font-weight: 600; color: var(--slate-700); margin-top: 12px; font-size: 0.88em; }
-.layers-guide dt:first-child { margin-top: 0; }
-.layers-guide dd { margin-left: 0; margin-top: 4px; color: var(--slate-500); font-size: 0.82em; line-height: 1.5; padding-left: 12px; border-left: 2px solid var(--slate-200); }
+.info-card:hover { transform: translateY(-1px); box-shadow: var(--shadow); }
+.info-card strong { color: var(--slate-800); display: block; margin-bottom: 2px; font-size: 0.88em; font-weight: 600; }
+.info-card p { margin: 0; font-size: 0.82em; color: var(--slate-600); line-height: 1.5; }
+.footer-sources-label { font-weight: 600; color: var(--slate-600); margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.05em; font-size: 0.75em; }
+.footer-sources { list-style: none; padding: 0; margin: 0 0 8px; }
+.footer-sources li { display: inline; }
+.footer-sources li + li::before { content: ' \00B7 '; color: var(--slate-400); }
 .legend-inline {
   display: flex;
   flex-direction: row;
@@ -399,7 +391,7 @@ footer {
         <input type="checkbox" name="policy-layer" value="lmi" id="cb-lmi"> LMI Category
       </label>
       <label class="layer-checkbox-label">
-        <input type="checkbox" name="policy-layer" value="highlevel" id="cb-highlevel"> High Level Findings
+        <input type="checkbox" name="policy-layer" value="highlevel" id="cb-highlevel"> High-Level Policy Findings
       </label>
       <label class="layer-checkbox-label">
         <input type="checkbox" name="policy-layer" value="capacity" id="cb-capacity"> Capacity Limits
@@ -421,46 +413,25 @@ footer {
       <div class="info-placeholder">
         <h3>Welcome to the Community-Owned Solar Map!</h3>
         <p>Click on any project marker to view its details.</p>
-        <div class="policy-highlight">
-          <h4>Why Community-Owned Solar?</h4>
-          <div class="policy-points">
-            <div class="policy-point"><div><strong>&bull; Access for All</strong><p>Community solar lets renters, low-income households, and those with unsuitable roofs access solar benefits without rooftop panels.</p></div></div>
-            <div class="policy-point"><div><strong>&bull; Lower Energy Bills</strong><p>Subscribers typically save 5&ndash;15% annually through credits on their electricity bill.</p></div></div>
-            <div class="policy-point"><div><strong>&bull; Grid Decarbonization</strong><p>Projects displace fossil-fuel generation and contribute to state and federal clean energy mandates.</p></div></div>
-            <div class="policy-point"><div><strong>&bull; Local Economic Benefits</strong><p>Projects create local jobs and keep energy dollars circulating in communities.</p></div></div>
-          </div>
-        </div>
         <div class="layers-guide">
           <h4>About the Layers</h4>
-          <dl>
-            <dt>Project Locations</dt>
-            <dd>Plots all community-owned solar projects as teal dots on the map.</dd>
-            <dt>Color by Ownership</dt>
-            <dd>Colors project dots by ownership type &mdash; green (cooperative), blue (publicly owned utility), purple (consumer-owned utility).</dd>
-            <dt>Color by Size</dt>
-            <dd>Scales dot size by MW-AC capacity, from smallest (&lt;1 MW) to largest (17.5+ MW).</dd>
-            <dt>LMI Category</dt>
-            <dd>Shades states by their Low-to-Moderate Income community solar policy category.</dd>
-            <dt>High Level Findings</dt>
-            <dd>Shades states darker blue for each of 4 key programs they have adopted: Virtual Net Metering, a state CS program, CS-specific policy support, and CS grants.</dd>
-            <dt>Capacity Limits</dt>
-            <dd>Colors states by their community solar capacity limit policy category.</dd>
-          </dl>
+          <div class="info-cards">
+            <div class="info-card"><strong>Project Locations</strong><p>Plots all community-owned solar projects as teal dots on the map.</p></div>
+            <div class="info-card"><strong>Color by Ownership</strong><p>Colors project dots by ownership type &mdash; green (cooperative), blue (publicly owned utility), purple (consumer-owned utility).</p></div>
+            <div class="info-card"><strong>Color by Size</strong><p>Scales dot size by MW-AC capacity, from smallest (&lt;1 MW) to largest (17.5+ MW).</p></div>
+            <div class="info-card"><strong>LMI Category</strong><p>Shades state policies for low- or moderate-income (LMI) households, including allowances for community or community-owned solar policies.</p></div>
+            <div class="info-card"><strong>High-Level Policy Findings</strong><p>Shades indicate dark blue for each of the four selections: Virtual Net Metering, states with Community-owned Solar programs, Community-owned Solar-specific Policy Support, and Community-owned Solar-related grant programs.</p></div>
+            <div class="info-card"><strong>Capacity Limits</strong><p>Colors states by their community solar capacity limit policy category.</p></div>
+          </div>
         </div>
         <div class="glossary">
           <h4>Key Terms Explained:</h4>
-          <dl>
-            <dt>Community-Owned Solar</dt>
-            <dd>A shared solar installation whose output is credited to multiple subscribing households or businesses.</dd>
-            <dt>MW-AC / MW-DC</dt>
-            <dd>AC capacity is grid-delivered power after inverter conversion; DC is raw panel output. AC is typically 10&ndash;20% lower.</dd>
-            <dt>Interconnection Year</dt>
-            <dd>The year the project connected to the utility grid and began producing power for subscribers.</dd>
-            <dt>Ownership Type</dt>
-            <dd>Whether the project is run by a cooperative, rural electric co-op, publicly owned utility, or consumer-owned utility.</dd>
-            <dt>High Level Findings</dt>
-            <dd>A 0&ndash;4 score counting how many key community solar policies a state has adopted: Virtual Net Metering (VNM), a statewide CS program, CS-specific support policies, and CS grants. Darker blue = more programs.</dd>
-          </dl>
+          <div class="info-cards">
+            <div class="info-card"><strong>MW-AC / MW-DC</strong><p>AC capacity is grid-delivered power after inverter conversion; DC is raw panel output. AC is typically 10&ndash;20% lower.</p></div>
+            <div class="info-card"><strong>Interconnection Year</strong><p>The year the project connected to the utility grid and began producing power for subscribers.</p></div>
+            <div class="info-card"><strong>Ownership Type</strong><p>Whether the project is run by a cooperative, rural electric co-op, publicly owned utility, or consumer-owned utility.</p></div>
+            <div class="info-card"><strong>High-Level Policy Findings</strong><p>A 0&ndash;4 score counting how many key community solar policies a state has adopted: Virtual Net Metering (VNM), a statewide COS program, COS-specific support policies, and COS grants. Darker blue = more programs.</p></div>
+          </div>
         </div>
       </div>
       </div>
@@ -468,7 +439,11 @@ footer {
   </div>
 
   <footer>
-    <p>Data source: MIT Renewable Energy Clinic, 2026 &middot; NREL data</p>
+    <p class="footer-sources-label">Data Sources</p>
+    <ul class="footer-sources">
+      <li>MIT Renewable Energy Clinic (2026)</li>
+      <li><a href="https://data.nlr.gov/submissions/244" target="_blank" rel="noopener">NREL's Sharing the Sun Database</a></li>
+    </ul>
     <p style="font-size:0.75em;color:#94a3b8;margin-top:8px;">Community-Owned Solar Database Map</p>
   </footer>
 </div>
@@ -707,7 +682,7 @@ function renderLegend(modes1, modes2) {
     boxes.push(box + '</div>');
   }
   if (modes2.indexOf('highlevel') >= 0) {
-    var box = '<div class="legend-box"><div class="legend-title">High-Level Findings</div>';
+    var box = '<div class="legend-box"><div class="legend-title">High-Level Policy Findings</div>';
     box += '<div style="font-size:11px;color:#64748b;margin-bottom:4px">Shade by # of programs</div>';
     var hlColors = ['#ffffff','#d6e4f0','#9bc1d9','#5b9bc4','#2c6e9e'];
     hlColors.forEach(function(c, n) {
